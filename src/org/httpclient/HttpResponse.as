@@ -7,14 +7,14 @@ package org.httpclient {
   /**
    * HTTP Response.
    */  
-  public class HttpResponse {
+  public class HTTPResponse {
         
     private var _version:String;
     private var _code:String;
     private var _message:String;
-    private var _header:HttpHeader;            
+    private var _header:HTTPHeader;            
         
-    public function HttpResponse(version:String, code:String, message:String, header:HttpHeader) {
+    public function HTTPResponse(version:String, code:String, message:String, header:HTTPHeader) {
       _version = version;
       _code = code;
       _message = message;
@@ -22,7 +22,7 @@ package org.httpclient {
     }
     
     // Header
-    public function get header():HttpHeader { return _header; }
+    public function get header():HTTPHeader { return _header; }
     
     // HTTP result code string. For example, '302'
     public function get code():String { return _code; }

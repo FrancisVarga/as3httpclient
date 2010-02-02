@@ -6,39 +6,46 @@ package org.httpclient {
   
   import com.adobe.net.URI;
   
-  import flash.events.EventDispatcher;
-  import flash.events.Event;
   import flash.errors.IllegalOperationError;
+  import flash.events.Event;
+  import flash.events.EventDispatcher;
+  import flash.events.IOErrorEvent;
+  import flash.events.SecurityErrorEvent;
   
-  import org.httpclient.http.Put;
-  import org.httpclient.http.Post;
+  import org.httpclient.events.HttpDataEvent;
+  import org.httpclient.events.HttpErrorEvent;
+  import org.httpclient.events.HTTPListener;
+  import org.httpclient.events.HttpRequestEvent;
+  import org.httpclient.events.HttpResponseEvent;
+  import org.httpclient.events.HttpStatusEvent;
+  import org.httpclient.http.Delete;
   import org.httpclient.http.Get;
   import org.httpclient.http.Head;
-  import org.httpclient.http.Delete;
-  import org.httpclient.events.HttpListener;
+  import org.httpclient.http.Post;
+  import org.httpclient.http.Put;
   
-  import org.httpclient.http.multipart.Multipart;
+  //import org.httpclient.http.multipart.Multipart;
   //import org.httpclient.http.multipart.FilePart;
     
   [Event(name=Event.CLOSE, type="flash.events.Event")]  
   
-  [Event(name=HttpRequestEvent.CONNECT, type="org.httpclient.events.HttpRequestEvent")]
-  [Event(name=HttpResponseEvent.COMPLETE, type="org.httpclient.events.HttpResponseEvent")]
+  [Event(name="requestConnect", type="org.httpclient.events.HttpRequestEvent")]
+  [Event(name="responseComplete", type="org.httpclient.events.HttpResponseEvent")]
   
-  [Event(name=HttpDataEvent.DATA, type="org.httpclient.events.HttpDataEvent")]     
-  [Event(name=HttpStatusEvent.STATUS, type="org.httpclient.events.HttpStatusEvent")]
-  [Event(name=HttpRequestEvent.COMPLETE, type="org.httpclient.events.HttpRequestEvent")]  
-  [Event(name=HttpErrorEvent.ERROR, type="org.httpclient.events.HttpErrorEvent")]  
-  [Event(name=HttpErrorEvent.TIMEOUT_ERROR, type="org.httpclient.events.HttpErrorEvent")]    
-  [Event(name=IOErrorEvent.IO_ERROR, type="flash.events.IOErrorEvent")]  
-  [Event(name=SecurityErrorEvent.SECURITY_ERROR, type="flash.events.SecurityErrorEvent")]  
+  [Event(name="httpData", type="org.httpclient.events.HttpDataEvent")]     
+  [Event(name="httpStatus", type="org.httpclient.events.HttpStatusEvent")]
+  [Event(name="requestComplete", type="org.httpclient.events.HttpRequestEvent")]  
+  [Event(name="httpError", type="org.httpclient.events.HttpErrorEvent")]  
+  [Event(name="httpTimeoutError", type="org.httpclient.events.HttpErrorEvent")]    
+  [Event(name="", type="flash.events.IOErrorEvent")]  
+  [Event(name="securityError", type="flash.events.SecurityErrorEvent")]  
   
   /**
    * HTTP Client.
    */
-  public class HttpClient extends EventDispatcher {
+  public class HTTPClient extends EventDispatcher {
 
-    private var _socket:HttpSocket;  
+    private var _socket:HTTPSocket;  
     private var _listener:*;
     private var _timeout:int;
     private var _proxy:URI;
@@ -48,7 +55,7 @@ package org.httpclient {
      * @param proxy URI
      * @param timeout Default timeout (1 minute)
      */
-    public function HttpClient(proxy:URI = null, timeout:int = 60000) {
+    public function HTTPClient(proxy:URI = null, timeout:int = 60000) {
       _timeout = timeout;
       _proxy = proxy;
     }
@@ -60,9 +67,9 @@ package org.httpclient {
      *  
      * @return Listener
      */
-    public function get listener():HttpListener {
+    public function get listener():HTTPListener {
       if (!_listener) {
-        _listener = new HttpListener();
+        _listener = new HTTPListener();
         _listener.register(this);        
       }
       return _listener;
@@ -73,7 +80,7 @@ package org.httpclient {
      * To clear the listener, use client.listener = null;
      * @para listener Listeners to callback on
      */
-    public function set listener(listener:HttpListener):void {
+    public function set listener(listener:HTTPListener):void {
       // Unregister existing listener if one exists
       if (_listener) {
         _listener.unregister(this);
@@ -110,12 +117,12 @@ package org.httpclient {
      * @param timeout Timeout (in millis)
      * @param listener Http listener to handle events, if null, the http client will handle events.
      */
-    public function request(uri:URI, request:HttpRequest, timeout:int = -1, listener:HttpListener = null):void {
+    public function request(uri:URI, request:HTTPRequest, timeout:int = -1, listener:HTTPListener = null):void {
       if (timeout == -1) timeout = _timeout;
       var dispatcher:EventDispatcher = null;
       if (listener != null) dispatcher = listener.register();
       else dispatcher = this;
-      _socket = new HttpSocket(dispatcher, timeout, _proxy);
+      _socket = new HTTPSocket(dispatcher, timeout, _proxy);
       _socket.request(uri, request);
     }
     
@@ -139,7 +146,7 @@ package org.httpclient {
      * @param 
      */
     public function upload(uri:URI, file:*, method:String = "PUT"):void {
-      var httpRequest:HttpRequest = null;
+      var httpRequest:HTTPRequest = null;
       if (method == "PUT") httpRequest = new Put();
       else if (method == "POST") httpRequest = new Post();
       else throw new ArgumentError("Method must be PUT or POST");
@@ -154,7 +161,7 @@ package org.httpclient {
      * @param uri
      * @param listener Listener (if null, the client is the listener)
      */
-    public function get(uri:URI, listener:HttpListener = null):void {
+    public function fetch(uri:URI, listener:HTTPListener = null):void {
       request(uri, new Get(), -1, listener);
     }
     
@@ -180,13 +187,14 @@ package org.httpclient {
      *  
      * @param uri
      * @param multipart
-     */
+    x
     public function postMultipart(uri:URI, multipart:Multipart):void {
       var post:Post = new Post();
       post.setMultipart(multipart);
       request(uri, post);
     }
-    
+    */
+	 
     /**
      * Post with raw data.
      *  

@@ -7,7 +7,7 @@ package org.httpclient {
   import flash.utils.Timer;
   import flash.events.TimerEvent;
 
-  public class HttpTimer {
+  public class HTTPTimer {
     
     private var _timer:Timer;
     
@@ -22,7 +22,7 @@ package org.httpclient {
      * @param timeout Timeout (in millis)
      * @param onTimeout onTimeout(time:Number)
      */
-    public function HttpTimer(timeout:Number, onTimeout:Function) {
+    public function HTTPTimer(timeout:Number, onTimeout:Function) {
       if (timeout <= 0) throw new ArgumentError("Timeout should be specified in milliseconds greater than 0");
       
       if (timeout > 0) _timeout = timeout;

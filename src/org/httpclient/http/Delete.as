@@ -4,9 +4,9 @@
  */
 package org.httpclient.http {
   
-  import org.httpclient.HttpRequest;
+  import org.httpclient.HTTPRequest;
   
-  public class Delete extends HttpRequest {
+  public class Delete extends HTTPRequest {
     
     public function Delete() {      
       super("DELETE");

@@ -10,7 +10,7 @@ package org.httpclient.events {
    * Registers for events and forwards notifications to specified listeners
    * if they are set.
    */
-  public class HttpListener extends EventDispatcher {
+  public class HTTPListener extends EventDispatcher {
     
     public var onClose:Function = null;
     public var onComplete:Function = null;
@@ -30,7 +30,7 @@ package org.httpclient.events {
       *  - onStatus(e:HttpStatusEvent)
       *  - onRequest(e:HttpRequestEvent)
       */
-    public function HttpListener(listeners:Object = null) {
+    public function HTTPListener(listeners:Object = null) {
       if (listeners) {
         if (listeners["onClose"] != undefined) onClose = listeners.onClose;
         if (listeners["onComplete"] != undefined) onComplete = listeners.onComplete;
@@ -42,7 +42,7 @@ package org.httpclient.events {
       }
     }
     
-    public function register(dispatcher:EventDispatcher = null):HttpListener {
+    public function register(dispatcher:EventDispatcher = null):HTTPListener {
       if (dispatcher == null) dispatcher = this;
       dispatcher.addEventListener(Event.CLOSE, onInternalClose);
       dispatcher.addEventListener(HttpResponseEvent.COMPLETE, onInternalComplete);
@@ -57,7 +57,7 @@ package org.httpclient.events {
       return this;
     }
     
-    public function unregister(dispatcher:EventDispatcher = null):HttpListener {
+    public function unregister(dispatcher:EventDispatcher = null):HTTPListener {
       if (dispatcher == null) dispatcher = this;
       dispatcher.removeEventListener(Event.CLOSE, onInternalClose);
       dispatcher.removeEventListener(HttpResponseEvent.COMPLETE, onInternalComplete);

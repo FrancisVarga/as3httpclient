@@ -4,14 +4,12 @@
  */
 package org.httpclient.io {
   
-  import com.adobe.utils.StringUtil;
+  import flash.errors.*;
   import flash.utils.ByteArray;
   
-  import org.httpclient.HttpResponse;
-  import org.httpclient.HttpHeader;
+  import org.httpclient.HTTPHeader;
+  import org.httpclient.HTTPResponse;
   import org.httpclient.Log;
-  
-  import flash.errors.*;
   
   /**
    * Bytes from response are placed in this buffer, and parsed according to transfer encoding.
@@ -28,7 +26,7 @@ package org.httpclient.io {
     private var _headerData:Array = [];
     
     // The response header, after we parsed it
-    private var _responseHeader:HttpResponse;    
+    private var _responseHeader:HTTPResponse;    
     
     // For special transfer encodings (like Chunks); Typically data is streamed directly
     private var _responseBody:HttpBuffer = new HttpBuffer();
@@ -124,7 +122,7 @@ package org.httpclient.io {
     /**
      * Get header, if its been reached.
      */
-    public function get header():HttpResponse { return _responseHeader; }
+    public function get header():HTTPResponse { return _responseHeader; }
     
     /**
      * Notify with response data.
@@ -152,7 +150,7 @@ package org.httpclient.io {
      * @param lines Lines in header
      * @return The HTTP response so far
      */
-    protected function parseHeader(lines:Array):HttpResponse {
+    protected function parseHeader(lines:Array):HTTPResponse {
       var line:String = lines[0];
 
       // Regex courtesy of ruby 1.8 Net::HTTP
@@ -180,7 +178,7 @@ package org.httpclient.io {
         }
       }
 
-      return new HttpResponse(version, code, message, new HttpHeader(headers));
+      return new HTTPResponse(version, code, message, new HTTPHeader(headers));
     }
 
   }

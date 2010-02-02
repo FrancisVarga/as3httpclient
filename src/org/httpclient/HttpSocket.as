@@ -7,30 +7,25 @@ package org.httpclient {
   import com.adobe.net.URI;
   import com.hurlant.crypto.tls.TLSSocket;
   
-  import flash.net.Socket;
-  import flash.utils.ByteArray;
-  import flash.utils.Timer;
-  
+  import flash.errors.EOFError;
   import flash.events.Event;
   import flash.events.EventDispatcher;
   import flash.events.IOErrorEvent;
+  import flash.events.ProgressEvent;
   import flash.events.SecurityErrorEvent;
-  import flash.events.ProgressEvent;  
-  import flash.errors.EOFError;
-  import flash.events.TimerEvent;
-  
-  import org.httpclient.io.HttpRequestBuffer;
-  import org.httpclient.io.HttpResponseBuffer;
-  import org.httpclient.io.HttpBuffer;
+  import flash.net.Socket;
+  import flash.utils.ByteArray;
   
   import org.httpclient.events.*;
+  import org.httpclient.io.HttpRequestBuffer;
+  import org.httpclient.io.HttpResponseBuffer;
       
   /**
    * HTTP Socket.
    *  
    * Follow the HTTP 1.1 spec: http://www.w3.org/Protocols/rfc2616/rfc2616.html
    */
-  public class HttpSocket {
+  public class HTTPSocket {
     
     public static const DEFAULT_HTTP_PORT:uint = 80;   
     public static const DEFAULT_HTTPS_PORT:uint = 443; 
@@ -43,7 +38,7 @@ package org.httpclient {
     private var _dispatcher:EventDispatcher;
 
     // Timer
-    private var _timer:HttpTimer;
+    private var _timer:HTTPTimer;
     
     // Internal callbacks
     private var _onConnect:Function;
@@ -62,9 +57,9 @@ package org.httpclient {
      * @param dispatcher Event dispatcher
      * @param timeout Timeout (in millis); Defaults to 60 seconds.
      */
-    public function HttpSocket(dispatcher:EventDispatcher, timeout:Number = 60000, proxy:URI = null) {
+    public function HTTPSocket(dispatcher:EventDispatcher, timeout:Number = 60000, proxy:URI = null) {
       _dispatcher = dispatcher;
-      _timer = new HttpTimer(timeout, onTimeout);
+      _timer = new HTTPTimer(timeout, onTimeout);
       _proxy = proxy;
     }
     
@@ -114,7 +109,7 @@ package org.httpclient {
      * Initiate the connection (if not connected) and send the request.
      * @param request HTTP request
      */
-    public function request(uri:URI, request:HttpRequest):void {
+    public function request(uri:URI, request:HTTPRequest):void {
       var onConnect:Function = function(event:Event):void {
         
         _dispatcher.dispatchEvent(new HttpRequestEvent(request, null, HttpRequestEvent.CONNECT));
@@ -158,10 +153,10 @@ package org.httpclient {
      * Send CONNECT request for https proxy
      * @param uri URI
      */
-    protected function connectProxy(uri:URI, request:HttpRequest):void {
-      var proxyResponse:HttpResponse;
+    protected function connectProxy(uri:URI, request:HTTPRequest):void {
+      var proxyResponse:HTTPResponse;
 
-      var onProxyHeader:Function = function(response:HttpResponse):void {
+      var onProxyHeader:Function = function(response:HTTPResponse):void {
         proxyResponse = response;
       };
 
@@ -202,7 +197,7 @@ package org.httpclient {
      * @param uri URI
      * @param request Request to write
      */
-    protected function sendRequest(uri:URI, request:HttpRequest):void {               
+    protected function sendRequest(uri:URI, request:HTTPRequest):void {               
       // Prepare response buffer
       _responseBuffer = new HttpResponseBuffer(request.hasResponseBody, onResponseHeader, onResponseData, onResponseComplete);
       
@@ -267,7 +262,7 @@ package org.httpclient {
     }
     
     // Called from 
-    private function onResponseComplete(response:HttpResponse):void {
+    private function onResponseComplete(response:HTTPResponse):void {
       Log.debug("Response complete");
       if (!(_socket is TLSSocket)) close(); // Don't close TLSSocket; it has a bug I think
       onComplete(response);
@@ -277,11 +272,11 @@ package org.httpclient {
     // Events (Custom listeners)
     //
     
-    private function onRequestComplete(request:HttpRequest, header:String):void {      
+    private function onRequestComplete(request:HTTPRequest, header:String):void {      
       _dispatcher.dispatchEvent(new HttpRequestEvent(request, header));
     }
     
-    private function onResponseHeader(response:HttpResponse):void {
+    private function onResponseHeader(response:HTTPResponse):void {
       Log.debug("Response: " + response.code);
       _dispatcher.dispatchEvent(new HttpStatusEvent(response));
     }
@@ -290,7 +285,7 @@ package org.httpclient {
       _dispatcher.dispatchEvent(new HttpDataEvent(bytes));
     }
     
-    private function onComplete(response:HttpResponse):void {
+    private function onComplete(response:HTTPResponse):void {
       _timer.stop();
       _dispatcher.dispatchEvent(new HttpResponseEvent(response));
     }
@@ -317,7 +312,7 @@ package org.httpclient {
       // when there is no more data.
       // TODO(gabe): Not sure if this is the correct behavior
       if (_responseBuffer) {
-        var response:HttpResponse = _responseBuffer.header; 
+        var response:HTTPResponse = _responseBuffer.header; 
         if (response && response.contentLength == -1 && !response.isChunked) {
           onComplete(response);
         }

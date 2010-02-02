@@ -4,9 +4,9 @@
  */
 package org.httpclient.http {
   
-  import org.httpclient.HttpRequest;
+  import org.httpclient.HTTPRequest;
   
-  public class Head extends HttpRequest {
+  public class Head extends HTTPRequest {
     
     public function Head() {      
       super("HEAD");

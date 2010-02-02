@@ -9,7 +9,7 @@ package org.httpclient.events {
    * You may want to use the regular HttpListener to handle the data as it becomes
    * available instead of storing it in memory.
    */
-  public class HttpDataListener extends HttpListener {
+  public class HttpDataListener extends HTTPListener {
     
     public var onDataComplete:Function = null;
     

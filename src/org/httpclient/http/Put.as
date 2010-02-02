@@ -4,9 +4,9 @@
  */
 package org.httpclient.http {
   
-  import org.httpclient.HttpRequest;
+  import org.httpclient.HTTPRequest;
   
-  public class Put extends HttpRequest {
+  public class Put extends HTTPRequest {
     
     public function Put() {      
       super("PUT");

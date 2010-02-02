@@ -7,12 +7,13 @@ package org.httpclient {
   import com.adobe.net.URI;
   import com.adobe.net.URIEncodingBitmap;
   import com.hurlant.util.Base64;
+  
   import flash.errors.IllegalOperationError;
-
   import flash.utils.ByteArray;
+  
   import org.httpclient.http.multipart.Multipart;
 
-  public class HttpRequest {
+  public class HTTPRequest {
     
     public static const kUriPathEscapeBitmap:URIEncodingBitmap = new URIEncodingBitmap(" %?#");
     public static const kUriQueryEscapeBitmap:URIEncodingBitmap = new URIEncodingBitmap(" %=|:?#/@+\\"); // Probably don't need to escape all these
@@ -21,7 +22,7 @@ package org.httpclient {
     protected var _method:String;
     
     // Request header
-    protected var _header:HttpHeader;
+    protected var _header:HTTPHeader;
     
     // Request body
     protected var _body:*;
@@ -42,13 +43,13 @@ package org.httpclient {
      * @param header
      * @param body 
      */
-    public function HttpRequest(method:String, header:HttpHeader = null, body:* = null) {
+    public function HTTPRequest(method:String, header:HTTPHeader = null, body:* = null) {
       _method = method;
       _body = body;
       _header = header;
       
       // Create default header
-      if (!_header) _header = new HttpHeader();
+      if (!_header) _header = new HTTPHeader ();
       
       loadDefaultHeaders();
     }
@@ -84,7 +85,7 @@ package org.httpclient {
       throw new Error("Must use a request subclass with this method defined.");
     }
     
-    public function get header():HttpHeader { return _header; }
+    public function get header():HTTPHeader { return _header; }
     public function get method():String { return _method; }
     public function get body():* { return _body; }
     

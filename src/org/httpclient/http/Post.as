@@ -4,9 +4,9 @@
  */
 package org.httpclient.http {
   
-  import org.httpclient.HttpRequest;
+  import org.httpclient.HTTPRequest;
   
-  public class Post extends HttpRequest {
+  public class Post extends HTTPRequest {
     
     public function Post(params:Array = null) {      
       super("POST");      

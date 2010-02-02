@@ -6,7 +6,7 @@ package org.httpclient {
   
   import com.adobe.utils.StringUtil;
   
-  public class HttpHeader {
+  public class HTTPHeader {
     
     private var _headers:Array;
     
@@ -14,7 +14,7 @@ package org.httpclient {
      * Create header.
      * Initialize with headers, [ { name: "Name", value: "Value" }, ... ]
      */
-    public function HttpHeader(headers:Array = null) {
+    public function HTTPHeader(headers:Array = null) {
       _headers = headers;
       if (!_headers) _headers = [];
     }

@@ -89,7 +89,7 @@ package org.httpclient.ui {
       
       var client:HttpClient = new HttpClient();
       client.timeout = 5000;
-      client.listener = new HttpListener(listeners);
+      client.listener = new HTTPListener(listeners);
       
       var request:HttpRequest = null;  
       if (verb == "GET") request = new Get();        

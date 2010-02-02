@@ -2,21 +2,21 @@ package org.httpclient.events {
   
   import flash.events.Event;
   
-  import org.httpclient.HttpResponse;
-  import org.httpclient.HttpHeader;
+  import org.httpclient.HTTPHeader;
+  import org.httpclient.HTTPResponse;
   
   public class HttpStatusEvent extends Event {
     
     public static const STATUS:String = "httpStatus";
     
-    private var _response:HttpResponse;
+    private var _response:HTTPResponse;
     
-    public function HttpStatusEvent(response:HttpResponse, type:String = STATUS, bubbles:Boolean = false, cancelable:Boolean = false):void {
+    public function HttpStatusEvent(response:HTTPResponse, type:String = STATUS, bubbles:Boolean = false, cancelable:Boolean = false):void {
       super(type, bubbles, cancelable);
       _response = response;     
     }
     
-    public function get response():HttpResponse {
+    public function get response():HTTPResponse{
       return _response;
     }
     
@@ -24,7 +24,7 @@ package org.httpclient.events {
       return _response.code; 
     }
     
-    public function get header():HttpHeader
+    public function get header():HTTPHeader
     {
       return _response.header;
     }

@@ -4,7 +4,7 @@ package org.httpclient.events {
   
   import org.httpclient.HTTPRequest;
   
-  public class HttpRequestEvent extends Event {
+  public class HTTPRequestEvent extends Event {
     
     public static const CONNECT:String = "requestConnect";
     public static const COMPLETE:String = "requestComplete";
@@ -12,7 +12,7 @@ package org.httpclient.events {
     private var _request:HTTPRequest;
     private var _header:String;
     
-    public function HttpRequestEvent(request:HTTPRequest, header:String, type:String = COMPLETE, bubbles:Boolean = false, cancelable:Boolean = false):void {
+    public function HTTPRequestEvent(request:HTTPRequest, header:String, type:String = COMPLETE, bubbles:Boolean = false, cancelable:Boolean = false):void {
       super(type, bubbles, cancelable);
       _request = request;
       _header = header;

@@ -12,12 +12,12 @@ package org.httpclient {
   import flash.events.IOErrorEvent;
   import flash.events.SecurityErrorEvent;
   
-  import org.httpclient.events.HttpDataEvent;
-  import org.httpclient.events.HttpErrorEvent;
+  import org.httpclient.events.HTTPDataEvent;
+  import org.httpclient.events.HTTPErrorEvent;
   import org.httpclient.events.HTTPListener;
-  import org.httpclient.events.HttpRequestEvent;
-  import org.httpclient.events.HttpResponseEvent;
-  import org.httpclient.events.HttpStatusEvent;
+  import org.httpclient.events.HTTPRequestEvent;
+  import org.httpclient.events.HTTPResponseEvent;
+  import org.httpclient.events.HTTPStatusEvent;
   import org.httpclient.http.Delete;
   import org.httpclient.http.Get;
   import org.httpclient.http.Head;
@@ -29,14 +29,14 @@ package org.httpclient {
     
   [Event(name=Event.CLOSE, type="flash.events.Event")]  
   
-  [Event(name="requestConnect", type="org.httpclient.events.HttpRequestEvent")]
-  [Event(name="responseComplete", type="org.httpclient.events.HttpResponseEvent")]
+  [Event(name="requestConnect", type="org.httpclient.events.HTTPRequestEvent")]
+  [Event(name="responseComplete", type="org.httpclient.events.HTTPResponseEvent")]
   
-  [Event(name="httpData", type="org.httpclient.events.HttpDataEvent")]     
-  [Event(name="httpStatus", type="org.httpclient.events.HttpStatusEvent")]
-  [Event(name="requestComplete", type="org.httpclient.events.HttpRequestEvent")]  
-  [Event(name="httpError", type="org.httpclient.events.HttpErrorEvent")]  
-  [Event(name="httpTimeoutError", type="org.httpclient.events.HttpErrorEvent")]    
+  [Event(name="httpData", type="org.httpclient.events.HTTPDataEvent")]     
+  [Event(name="httpStatus", type="org.httpclient.events.HTTPStatusEvent")]
+  [Event(name="requestComplete", type="org.httpclient.events.HTTPRequestEvent")]  
+  [Event(name="httpError", type="org.httpclient.events.HTTPErrorEvent")]  
+  [Event(name="httpTimeoutError", type="org.httpclient.events.HTTPErrorEvent")]    
   [Event(name="", type="flash.events.IOErrorEvent")]  
   [Event(name="securityError", type="flash.events.SecurityErrorEvent")]  
   
@@ -115,7 +115,7 @@ package org.httpclient {
      * @param uri URI
      * @param request HTTP request
      * @param timeout Timeout (in millis)
-     * @param listener Http listener to handle events, if null, the http client will handle events.
+     * @param listener HTTP listener to handle events, if null, the http client will handle events.
      */
     public function request(uri:URI, request:HTTPRequest, timeout:int = -1, listener:HTTPListener = null):void {
       if (timeout == -1) timeout = _timeout;
@@ -130,10 +130,10 @@ package org.httpclient {
      * Upload file to URI. In the Flash/AIR VM, there is no way to determine when packets leave the computer, since
      * the Socket#flush call is not blocking and there is no output progress events to monitor.
      *  
-     *  var client:HttpClient = new HttpClient();
+     *  var client:HTTPClient = new HTTPClient();
      *  
-     *  client.listener.onComplete = function(e:HttpResponseEvent):void { ... };
-     *  client.listener.onStatus = function(e:HttpStatusEvent):void { ... };
+     *  client.listener.onComplete = function(e:HTTPResponseEvent):void { ... };
+     *  client.listener.onStatus = function(e:HTTPStatusEvent):void { ... };
      * 
      *  var uri:URI = new URI("http://http-test.s3.amazonaws.com/test_put.png");
      *  var testFile:File = new File("app:/test/assets/test.png");

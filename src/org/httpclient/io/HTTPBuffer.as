@@ -8,14 +8,14 @@ package org.httpclient.io {
   import flash.utils.ByteArray;
   import org.httpclient.Log;
   
-  public class HttpBuffer {
+  public class HTTPBuffer {
     
     protected var _data:ByteArray = new ByteArray();
     protected var _cursor:uint = 0; // Read position
     
     protected var _chunkLength:uint = 0; // Last chunk length
     
-    public function HttpBuffer() { 
+    public function HTTPBuffer() { 
       super();
     }
 

@@ -3,13 +3,13 @@ package org.httpclient.events {
 	import flash.events.Event;
 	import flash.utils.ByteArray;
 	
-	public class HttpDataEvent extends Event {
+	public class HTTPDataEvent extends Event {
 		
 		public static const DATA:String = "httpData";
 		
 		private var _bytes:ByteArray;
 		
-		public function HttpDataEvent(bytes:ByteArray, type:String = DATA, bubbles:Boolean = false, cancelable:Boolean = false):void {
+		public function HTTPDataEvent(bytes:ByteArray, type:String = DATA, bubbles:Boolean = false, cancelable:Boolean = false):void {
 			super(type, bubbles, cancelable);
 			_bytes = bytes;
 		}

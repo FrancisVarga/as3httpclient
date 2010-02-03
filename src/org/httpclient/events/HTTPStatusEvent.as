@@ -5,13 +5,13 @@ package org.httpclient.events {
   import org.httpclient.HTTPHeader;
   import org.httpclient.HTTPResponse;
   
-  public class HttpStatusEvent extends Event {
+  public class HTTPStatusEvent extends Event {
     
     public static const STATUS:String = "httpStatus";
     
     private var _response:HTTPResponse;
     
-    public function HttpStatusEvent(response:HTTPResponse, type:String = STATUS, bubbles:Boolean = false, cancelable:Boolean = false):void {
+    public function HTTPStatusEvent(response:HTTPResponse, type:String = STATUS, bubbles:Boolean = false, cancelable:Boolean = false):void {
       super(type, bubbles, cancelable);
       _response = response;     
     }

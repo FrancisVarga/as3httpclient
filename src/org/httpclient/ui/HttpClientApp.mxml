@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ui:HttpClientAppImpl xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" xmlns:ui="org.httpclient.ui.*" creationComplete="onCreationComplete(event)">
+<ui:HTTPClientAppImpl xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" xmlns:ui="org.httpclient.ui.*" creationComplete="onCreationComplete(event)">
     
   <mx:TabNavigator id="tabNavigator" width="100%" height="100%" creationPolicy="all">
       
@@ -59,4 +59,4 @@
 
 
 
-</ui:HttpClientAppImpl>
+</ui:HTTPClientAppImpl>

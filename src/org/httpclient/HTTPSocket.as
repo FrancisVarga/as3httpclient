@@ -17,8 +17,8 @@ package org.httpclient {
   import flash.utils.ByteArray;
   
   import org.httpclient.events.*;
-  import org.httpclient.io.HttpRequestBuffer;
-  import org.httpclient.io.HttpResponseBuffer;
+  import org.httpclient.io.HTTPRequestBuffer;
+  import org.httpclient.io.HTTPResponseBuffer;
       
   /**
    * HTTP Socket.
@@ -44,8 +44,8 @@ package org.httpclient {
     private var _onConnect:Function;
     
     // Buffers
-    private var _requestBuffer:HttpRequestBuffer;
-    private var _responseBuffer:HttpResponseBuffer;    
+    private var _requestBuffer:HTTPRequestBuffer;
+    private var _responseBuffer:HTTPResponseBuffer;    
     
     private var _proxy:URI;
     
@@ -112,7 +112,7 @@ package org.httpclient {
     public function request(uri:URI, request:HTTPRequest):void {
       var onConnect:Function = function(event:Event):void {
         
-        _dispatcher.dispatchEvent(new HttpRequestEvent(request, null, HttpRequestEvent.CONNECT));
+        _dispatcher.dispatchEvent(new HTTPRequestEvent(request, null, HTTPRequestEvent.CONNECT));
         
         if (uri.scheme == "https" && _proxy) {
           connectProxy(uri, request);
@@ -175,12 +175,12 @@ package org.httpclient {
           _socket.addEventListener(ProgressEvent.SOCKET_DATA, onSocketData);
           sendRequest(uri, request);
         } else {
-          _dispatcher.dispatchEvent(new HttpErrorEvent(HttpErrorEvent.ERROR, false, false, "CONNECT method failed", 1));
+          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "CONNECT method failed", 1));
         }
       };
     
       // Prepare response buffer
-      _responseBuffer = new HttpResponseBuffer(false, onProxyHeader, onProxyData, onProxyComplete);
+      _responseBuffer = new HTTPResponseBuffer(false, onProxyHeader, onProxyData, onProxyComplete);
       
       var bytes:ByteArray = new ByteArray();
       bytes.writeUTFBytes("CONNECT " + uri.authority + ":" + ((uri.port) ? uri.port : DEFAULT_HTTPS_PORT) + " HTTP/" + HTTP_VERSION + "\r\n\r\n");
@@ -199,7 +199,7 @@ package org.httpclient {
      */
     protected function sendRequest(uri:URI, request:HTTPRequest):void {               
       // Prepare response buffer
-      _responseBuffer = new HttpResponseBuffer(request.hasResponseBody, onResponseHeader, onResponseData, onResponseComplete);
+      _responseBuffer = new HTTPResponseBuffer(request.hasResponseBody, onResponseHeader, onResponseData, onResponseComplete);
       
       Log.debug("Request URI: " + uri + " (" + request.method + ")");
       var headerBytes:ByteArray = request.getHeader(uri, _proxy, HTTP_VERSION);
@@ -214,7 +214,7 @@ package org.httpclient {
       
       if (request.hasRequestBody) {
         
-        _requestBuffer = new HttpRequestBuffer(request.body);
+        _requestBuffer = new HTTPRequestBuffer(request.body);
         
         Log.debug("Sending request data");
         while (_requestBuffer.hasData) {
@@ -255,7 +255,7 @@ package org.httpclient {
           
         } catch(e:EOFError) {
           Log.debug("EOF");
-          _dispatcher.dispatchEvent(new HttpErrorEvent(HttpErrorEvent.ERROR, false, false, "EOF", 1));          
+          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "EOF", 1));          
           break;
         }                           
       }
@@ -273,25 +273,25 @@ package org.httpclient {
     //
     
     private function onRequestComplete(request:HTTPRequest, header:String):void {      
-      _dispatcher.dispatchEvent(new HttpRequestEvent(request, header));
+      _dispatcher.dispatchEvent(new HTTPRequestEvent(request, header));
     }
     
     private function onResponseHeader(response:HTTPResponse):void {
       Log.debug("Response: " + response.code);
-      _dispatcher.dispatchEvent(new HttpStatusEvent(response));
+      _dispatcher.dispatchEvent(new HTTPStatusEvent(response));
     }
     
     private function onResponseData(bytes:ByteArray):void {
-      _dispatcher.dispatchEvent(new HttpDataEvent(bytes));
+      _dispatcher.dispatchEvent(new HTTPDataEvent(bytes));
     }
     
     private function onComplete(response:HTTPResponse):void {
       _timer.stop();
-      _dispatcher.dispatchEvent(new HttpResponseEvent(response));
+      _dispatcher.dispatchEvent(new HTTPResponseEvent(response));
     }
     
     private function onTimeout(idleTime:Number):void {
-      _dispatcher.dispatchEvent(new HttpErrorEvent(HttpErrorEvent.TIMEOUT_ERROR, false, false, "Timeout", 0));
+      _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.TIMEOUT_ERROR, false, false, "Timeout", 0));
       close();
     }
     

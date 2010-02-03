@@ -7,7 +7,7 @@ package org.httpclient.io {
   import com.adobe.utils.StringUtil;
   import flash.utils.ByteArray;
   
-  public class HttpRequestBuffer {
+  public class HTTPRequestBuffer {
        
     private var _body:*;
     
@@ -18,7 +18,7 @@ package org.httpclient.io {
     /**
      * Create request buffer.
      */   
-    public function HttpRequestBuffer(body:*) {
+    public function HTTPRequestBuffer(body:*) {
       _body = body;
     }
     

@@ -15,7 +15,7 @@ package org.httpclient.ui {
   import com.adobe.net.URI;
   import com.adobe.utils.StringUtil;
 
-  public class HttpClientAppImpl extends Application {
+  public class HTTPClientAppImpl extends Application {
     
     [Bindable]
     public var verbs:ArrayCollection = new ArrayCollection([ { label:"GET" }, { label:"HEAD" }, { label:"DELETE" }, { label:"PUT" }, { label:"POST" } ]);
@@ -56,20 +56,20 @@ package org.httpclient.ui {
       responseHeader = "";    
       
       var listeners:Object = { 
-        onConnect: function(e:HttpRequestEvent):void {
+        onConnect: function(e:HTTPRequestEvent):void {
           status = "Connected";
         },
-        onRequest: function(e:HttpRequestEvent):void {
+        onRequest: function(e:HTTPRequestEvent):void {
           status = "Request sent";
           requestSent = e.header.replace(/\r\n/g, "\n");
           if (e.request.body) requestSent += e.request.body;
         },
-        onStatus: function(e:HttpStatusEvent):void {
+        onStatus: function(e:HTTPStatusEvent):void {
           status = "Got response header";
           responseStatus = e.code + " " + e.response.message;
           responseHeader = e.header.toString();
         },
-        onData: function(e:HttpDataEvent):void {           
+        onData: function(e:HTTPDataEvent):void {           
           status = "Received " + e.bytes.length + " bytes";
           responseBody += e.readUTFBytes();
         },        
@@ -77,7 +77,7 @@ package org.httpclient.ui {
           status = "Closed";
           tabNavigator.selectedIndex = 1;
         },
-        onComplete: function(e:HttpResponseEvent):void {          
+        onComplete: function(e:HTTPResponseEvent):void {          
           status = "Completed";
         },
         onError: function(event:ErrorEvent):void {
@@ -87,11 +87,11 @@ package org.httpclient.ui {
       
       status = "Connecting";
       
-      var client:HttpClient = new HttpClient();
+      var client:HTTPClient = new HTTPClient();
       client.timeout = 5000;
       client.listener = new HTTPListener(listeners);
       
-      var request:HttpRequest = null;  
+      var request:HTTPRequest = null;  
       if (verb == "GET") request = new Get();        
       else if (verb == "HEAD") request = new Head();
       else if (verb == "DELETE") request = new Delete();
@@ -108,7 +108,7 @@ package org.httpclient.ui {
     /**
      * Add custom headers.
      */
-    public function addCustomHeaders(request:HttpRequest):void {
+    public function addCustomHeaders(request:HTTPRequest):void {
       var headerToAdd:Array = [];
       var headerLines:Array = requestHeaderArea.text.split(/\r+/);
       for each(var headerLine:String in headerLines) {
@@ -124,7 +124,7 @@ package org.httpclient.ui {
     /**
      * Add body.
      */    
-    public function addBody(request:HttpRequest):void {
+    public function addBody(request:HTTPRequest):void {
       var data:ByteArray = new ByteArray();
       data.writeUTFBytes(requestBodyArea.text);
       data.position = 0;  

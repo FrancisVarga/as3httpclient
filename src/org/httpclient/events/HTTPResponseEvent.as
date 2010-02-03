@@ -4,13 +4,13 @@ package org.httpclient.events {
   
   import org.httpclient.HTTPResponse;
   
-  public class HttpResponseEvent extends Event {
+  public class HTTPResponseEvent extends Event {
     
     public static const COMPLETE:String = "responseComplete";
     
     private var _response:HTTPResponse;
     
-    public function HttpResponseEvent(response:HTTPResponse, type:String = COMPLETE, bubbles:Boolean = false, cancelable:Boolean = false):void {
+    public function HTTPResponseEvent(response:HTTPResponse, type:String = COMPLETE, bubbles:Boolean = false, cancelable:Boolean = false):void {
       super(type, bubbles, cancelable);
       _response = response;
     }

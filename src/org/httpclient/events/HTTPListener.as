@@ -23,12 +23,12 @@ package org.httpclient.events {
     /**
       * Listeners:
       *  - onClose(e:Event)
-      *  - onComplete(e:HttpResponseEvent)
-      *  - onConnect(e:HttpRequestEvent)
-      *  - onData(e:HttpDataEvent)
+      *  - onComplete(e:HTTPResponseEvent)
+      *  - onConnect(e:HTTPRequestEvent)
+      *  - onData(e:HTTPDataEvent)
       *  - onError(e:ErrorEvent)
-      *  - onStatus(e:HttpStatusEvent)
-      *  - onRequest(e:HttpRequestEvent)
+      *  - onStatus(e:HTTPStatusEvent)
+      *  - onRequest(e:HTTPRequestEvent)
       */
     public function HTTPListener(listeners:Object = null) {
       if (listeners) {
@@ -45,13 +45,13 @@ package org.httpclient.events {
     public function register(dispatcher:EventDispatcher = null):HTTPListener {
       if (dispatcher == null) dispatcher = this;
       dispatcher.addEventListener(Event.CLOSE, onInternalClose);
-      dispatcher.addEventListener(HttpResponseEvent.COMPLETE, onInternalComplete);
-      dispatcher.addEventListener(HttpRequestEvent.CONNECT, onInternalConnect);
-      dispatcher.addEventListener(HttpDataEvent.DATA, onInternalData);
-      dispatcher.addEventListener(HttpErrorEvent.ERROR, onInternalError);
-      dispatcher.addEventListener(HttpErrorEvent.TIMEOUT_ERROR, onInternalError);
-      dispatcher.addEventListener(HttpStatusEvent.STATUS, onInternalStatus);
-      dispatcher.addEventListener(HttpRequestEvent.COMPLETE, onInternalRequest);
+      dispatcher.addEventListener(HTTPResponseEvent.COMPLETE, onInternalComplete);
+      dispatcher.addEventListener(HTTPRequestEvent.CONNECT, onInternalConnect);
+      dispatcher.addEventListener(HTTPDataEvent.DATA, onInternalData);
+      dispatcher.addEventListener(HTTPErrorEvent.ERROR, onInternalError);
+      dispatcher.addEventListener(HTTPErrorEvent.TIMEOUT_ERROR, onInternalError);
+      dispatcher.addEventListener(HTTPStatusEvent.STATUS, onInternalStatus);
+      dispatcher.addEventListener(HTTPRequestEvent.COMPLETE, onInternalRequest);
       dispatcher.addEventListener(IOErrorEvent.IO_ERROR, onInternalError);
       dispatcher.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onInternalError);
       return this;
@@ -60,13 +60,13 @@ package org.httpclient.events {
     public function unregister(dispatcher:EventDispatcher = null):HTTPListener {
       if (dispatcher == null) dispatcher = this;
       dispatcher.removeEventListener(Event.CLOSE, onInternalClose);
-      dispatcher.removeEventListener(HttpResponseEvent.COMPLETE, onInternalComplete);
-      dispatcher.removeEventListener(HttpRequestEvent.CONNECT, onInternalConnect);
-      dispatcher.removeEventListener(HttpDataEvent.DATA, onInternalData);
-      dispatcher.removeEventListener(HttpErrorEvent.ERROR, onInternalError);
-      dispatcher.removeEventListener(HttpErrorEvent.TIMEOUT_ERROR, onInternalError);
-      dispatcher.removeEventListener(HttpStatusEvent.STATUS, onInternalStatus);
-      dispatcher.removeEventListener(HttpRequestEvent.COMPLETE, onInternalRequest);
+      dispatcher.removeEventListener(HTTPResponseEvent.COMPLETE, onInternalComplete);
+      dispatcher.removeEventListener(HTTPRequestEvent.CONNECT, onInternalConnect);
+      dispatcher.removeEventListener(HTTPDataEvent.DATA, onInternalData);
+      dispatcher.removeEventListener(HTTPErrorEvent.ERROR, onInternalError);
+      dispatcher.removeEventListener(HTTPErrorEvent.TIMEOUT_ERROR, onInternalError);
+      dispatcher.removeEventListener(HTTPStatusEvent.STATUS, onInternalStatus);
+      dispatcher.removeEventListener(HTTPRequestEvent.COMPLETE, onInternalRequest);
       dispatcher.removeEventListener(IOErrorEvent.IO_ERROR, onInternalError);
       dispatcher.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onInternalError);
       return this;
@@ -76,19 +76,19 @@ package org.httpclient.events {
       if (onClose != null) onClose(e);
     }
     
-    protected function onInternalComplete(e:HttpResponseEvent):void { 
+    protected function onInternalComplete(e:HTTPResponseEvent):void { 
       if (onComplete != null) onComplete(e);
     }
     
-    protected function onInternalConnect(e:HttpRequestEvent):void { 
+    protected function onInternalConnect(e:HTTPRequestEvent):void { 
       if (onConnect != null) onConnect(e);
     }
     
-    protected function onInternalRequest(e:HttpRequestEvent):void {
+    protected function onInternalRequest(e:HTTPRequestEvent):void {
       if (onRequest != null) onRequest(e);
     }
     
-    protected function onInternalData(e:HttpDataEvent):void { 
+    protected function onInternalData(e:HTTPDataEvent):void { 
       if (onData != null) onData(e);
     }
     
@@ -96,7 +96,7 @@ package org.httpclient.events {
       if (onError != null) onError(e);
     }
     
-    protected function onInternalStatus(e:HttpStatusEvent):void { 
+    protected function onInternalStatus(e:HTTPStatusEvent):void { 
       if (onStatus != null) onStatus(e);
     }
     

@@ -14,10 +14,10 @@ package org.httpclient.io {
   /**
    * Bytes from response are placed in this buffer, and parsed according to transfer encoding.
    */
-  public class HttpResponseBuffer {
+  public class HTTPResponseBuffer {
         
     // Data buffer
-    private var _buffer:HttpBuffer = new HttpBuffer();
+    private var _buffer:HTTPBuffer = new HTTPBuffer();
     
     // Bytes read of body content
     private var _bodyBytesRead:Number = 0;
@@ -29,9 +29,9 @@ package org.httpclient.io {
     private var _responseHeader:HTTPResponse;    
     
     // For special transfer encodings (like Chunks); Typically data is streamed directly
-    private var _responseBody:HttpBuffer = new HttpBuffer();
+    private var _responseBody:HTTPBuffer = new HTTPBuffer();
     
-    // Notified of response header: function(response:HttpResponse):void { }
+    // Notified of response header: function(response:HTTPResponse):void { }
     private var _onResponseHeader:Function;
     
     // Notified of response body data: function(bytes:ByteArray):void { }
@@ -49,11 +49,11 @@ package org.httpclient.io {
     /**
      * Create response buffer.
      * @param hasResponseBody Whether there is a response body
-     * @param onResponseHeader(response:HttpResponse)
+     * @param onResponseHeader(response:HTTPResponse)
      * @param onResponseData(bytes:ByteArray)
-     * @param onResponseComplete(response:HttpResponse)
+     * @param onResponseComplete(response:HTTPResponse)
      */
-    public function HttpResponseBuffer(hasResponseBody:Boolean, onResponseHeader:Function, onResponseData:Function, onResponseComplete:Function) { 
+    public function HTTPResponseBuffer(hasResponseBody:Boolean, onResponseHeader:Function, onResponseData:Function, onResponseComplete:Function) { 
       super();
       _hasResponseBody = hasResponseBody;
       _onResponseHeader = onResponseHeader;

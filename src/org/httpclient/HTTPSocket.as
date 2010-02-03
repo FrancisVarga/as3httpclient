@@ -213,13 +213,15 @@ package org.httpclient {
       _timer.reset();
       
       if (request.hasRequestBody) {
-        
+        /* Forcably rewinds ByteArray
+         */
+        request.body.position = 0;
         _requestBuffer = new HTTPRequestBuffer(request.body);
         
         Log.debug("Sending request data");
         while (_requestBuffer.hasData) {
           var bytes:ByteArray = _requestBuffer.read();
-          //Log.debug("<" + bytes.length + ">");
+          Log.debug("<" + bytes.length + ">");
           if (bytes.length > 0) {
             
             _socket.writeBytes(bytes);

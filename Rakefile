@@ -1,28 +1,48 @@
 require 'rubygems'
-require 'airake'
+require 'rake'
+require 'rake/clean'
+require 'sprout'
+require 'sprout/tasks/sftp_task'
 
-project_root = File.expand_path(File.dirname(__FILE__))
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  if File.exist?('VERSION')
+    version = File.read('VERSION')
+  else
+    version = ""
+  end
 
-ENV["AIRAKE_ROOT"] ||= project_root
-ENV["AIRAKE_ENV"] ||= "development"
-
-task :default => :compile do; end
-
-# For task list run, rake --tasks
-task :test => [ "air:test" ] do; end 
-task :compile => [ "air:compile" ] do; end 
-task :package => [ "air:package" ] do; end 
-task :adl => [ "air:adl" ] do; end 
-task :docs => [ "air:docs" ] do; end 
-task :clean => [ "air:clean" ] do; end 
-task :acompc => [ "air:acompc" ] do; end 
-
-task :flash_swf do
-
-  cmd = "mxmlc +configname=flex -source-path #{project_root}/src -library-path+=#{project_root}/lib \
--output #{project_root}/html/HttpClientFlashApp.swf -- #{project_root}/src/org/httpclient/ui/HttpClientApp.mxml"
-
-  puts "Command: #{cmd}"
-  system(cmd)
-  
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "sprout-as3httpclient-src-library #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+FILES = File.join(File.dirname(__FILE__), 'lib')
+PKG = File.join(File.dirname(__FILE__), 'pkg')
+ARTIFACTS = ENV['CC_BUILD_ARTIFACTS'] || 'artifact'
+
+Dir.glob("#{FILES}/**").each do |file|
+  load file
+
+  name = File.basename(file).split('.rb').join('')
+  task :package => name
+end
+
+CLEAN.add(PKG)
+
+desc "Package all libraries as gems"
+task :package do
+  Dir.glob("#{PKG}/**").each do |file|
+    if(File.directory?(file))
+      FileUtils.rm_rf(file)
+    end
+  end
+end
+
+desc "Increment Revision"
+task :increment_revision do
+  # library tasks should be incremented independently...
+end
+
+task :default => :"as3httpclient-src"

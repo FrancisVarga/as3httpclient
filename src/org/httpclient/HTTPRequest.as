@@ -191,7 +191,7 @@ package org.httpclient {
         var credential:String = proxy.username + ":" + proxy.password;
         addHeader("Proxy-Authorization", "Basic " + Base64.encode(credential));
       }
-
+	
       if (!header.isEmpty)
         bytes.writeUTFBytes(header.content);
         

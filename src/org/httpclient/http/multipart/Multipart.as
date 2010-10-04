@@ -2,9 +2,10 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient.http.multipart {
+package org.httpclient.http.multipart
+{
+    import flash.utils.ByteArray;
   
-  import flash.utils.ByteArray;
   
   public class Multipart {
     

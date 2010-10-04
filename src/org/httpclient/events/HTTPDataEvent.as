@@ -1,7 +1,8 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import flash.events.Event;
+    import flash.utils.ByteArray;
 	
-	import flash.events.Event;
-	import flash.utils.ByteArray;
 	
 	public class HTTPDataEvent extends Event {
 		

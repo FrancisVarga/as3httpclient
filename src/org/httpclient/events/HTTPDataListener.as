@@ -1,7 +1,7 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import flash.utils.ByteArray;
     
-  import org.httpclient.Log;
-  import flash.utils.ByteArray;
   
   
   /**

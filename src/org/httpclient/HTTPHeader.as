@@ -2,9 +2,10 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient {
+package org.httpclient
+{
+    import com.adobe.utils.StringUtil;
   
-  import com.adobe.utils.StringUtil;
   
   public class HTTPHeader {
     

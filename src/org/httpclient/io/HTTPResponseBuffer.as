@@ -2,14 +2,14 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient.io {
+package org.httpclient.io
+{
+    import org.httpclient.HTTPHeader;
+    import org.httpclient.HTTPResponse;
+    import org.httpclient.Log;
+
+    import flash.utils.ByteArray;
   
-  import flash.errors.*;
-  import flash.utils.ByteArray;
-  
-  import org.httpclient.HTTPHeader;
-  import org.httpclient.HTTPResponse;
-  import org.httpclient.Log;
   
   /**
    * Bytes from response are placed in this buffer, and parsed according to transfer encoding.

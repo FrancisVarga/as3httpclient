@@ -1,6 +1,7 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import flash.events.ErrorEvent;
   
-  import flash.events.ErrorEvent;
   
   public class HTTPErrorEvent extends ErrorEvent {
     

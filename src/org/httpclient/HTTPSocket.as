@@ -2,23 +2,24 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient {
+package org.httpclient
+{
+    import com.adobe.net.URI;
+    import com.hurlant.crypto.tls.TLSSocket;
+
+    import org.httpclient.events.*;
+    import org.httpclient.io.HTTPRequestBuffer;
+    import org.httpclient.io.HTTPResponseBuffer;
+
+    import flash.errors.EOFError;
+    import flash.events.Event;
+    import flash.events.EventDispatcher;
+    import flash.events.IOErrorEvent;
+    import flash.events.ProgressEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.net.Socket;
+    import flash.utils.ByteArray;
   
-  import com.adobe.net.URI;
-  import com.hurlant.crypto.tls.TLSSocket;
-  
-  import flash.errors.EOFError;
-  import flash.events.Event;
-  import flash.events.EventDispatcher;
-  import flash.events.IOErrorEvent;
-  import flash.events.ProgressEvent;
-  import flash.events.SecurityErrorEvent;
-  import flash.net.Socket;
-  import flash.utils.ByteArray;
-  
-  import org.httpclient.events.*;
-  import org.httpclient.io.HTTPRequestBuffer;
-  import org.httpclient.io.HTTPResponseBuffer;
       
   /**
    * HTTP Socket.

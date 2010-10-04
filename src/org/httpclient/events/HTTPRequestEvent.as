@@ -1,8 +1,9 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import org.httpclient.HTTPRequest;
+
+    import flash.events.Event;
   
-  import flash.events.Event;
-  
-  import org.httpclient.HTTPRequest;
   
   public class HTTPRequestEvent extends Event {
     

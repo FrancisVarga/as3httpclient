@@ -2,10 +2,10 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient.io {
+package org.httpclient.io
+{
+    import flash.utils.ByteArray;
   
-  import com.adobe.utils.StringUtil;
-  import flash.utils.ByteArray;
   
   public class HTTPRequestBuffer {
        

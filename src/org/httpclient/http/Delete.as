@@ -2,9 +2,10 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient.http {
+package org.httpclient.http
+{
+    import org.httpclient.HTTPRequest;
   
-  import org.httpclient.HTTPRequest;
   
   public class Delete extends HTTPRequest {
     

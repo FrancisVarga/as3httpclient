@@ -1,9 +1,10 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import org.httpclient.HTTPHeader;
+    import org.httpclient.HTTPResponse;
+
+    import flash.events.Event;
   
-  import flash.events.Event;
-  
-  import org.httpclient.HTTPHeader;
-  import org.httpclient.HTTPResponse;
   
   public class HTTPStatusEvent extends Event {
     

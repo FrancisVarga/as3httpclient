@@ -1,10 +1,11 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+    import flash.events.ErrorEvent;
+    import flash.events.Event;
+    import flash.events.EventDispatcher;
+    import flash.events.IOErrorEvent;
+    import flash.events.SecurityErrorEvent;
   
-  import flash.events.Event;
-  import flash.events.EventDispatcher;
-  import flash.events.ErrorEvent;
-  import flash.events.SecurityErrorEvent;
-  import flash.events.IOErrorEvent;
   
   /**
    * Registers for events and forwards notifications to specified listeners

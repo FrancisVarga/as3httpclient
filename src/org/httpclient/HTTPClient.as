@@ -2,27 +2,20 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient {
+package org.httpclient
+{
+	import com.adobe.net.URI;
+
+	import org.httpclient.events.HTTPListener;
+	import org.httpclient.http.Delete;
+	import org.httpclient.http.Get;
+	import org.httpclient.http.Head;
+	import org.httpclient.http.Post;
+	import org.httpclient.http.Put;
+
+	import flash.errors.IllegalOperationError;
+	import flash.events.EventDispatcher;
   
-  import com.adobe.net.URI;
-  
-  import flash.errors.IllegalOperationError;
-  import flash.events.Event;
-  import flash.events.EventDispatcher;
-  import flash.events.IOErrorEvent;
-  import flash.events.SecurityErrorEvent;
-  
-  import org.httpclient.events.HTTPDataEvent;
-  import org.httpclient.events.HTTPErrorEvent;
-  import org.httpclient.events.HTTPListener;
-  import org.httpclient.events.HTTPRequestEvent;
-  import org.httpclient.events.HTTPResponseEvent;
-  import org.httpclient.events.HTTPStatusEvent;
-  import org.httpclient.http.Delete;
-  import org.httpclient.http.Get;
-  import org.httpclient.http.Head;
-  import org.httpclient.http.Post;
-  import org.httpclient.http.Put;
   
   //import org.httpclient.http.multipart.Multipart;
   //import org.httpclient.http.multipart.FilePart;
@@ -111,6 +104,7 @@ package org.httpclient {
     
     /**
      * Load a generic request.
+     * <h1>GET<h1> REQUEST
      *  
      * @param uri URI
      * @param request HTTP request

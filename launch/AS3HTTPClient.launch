@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="com.powerflasher.fdt.ui.CompcGroup">
+  <stringAttribute key="ARGUMENTS" value=" -target-player={playerVersion}" />
+  <booleanAttribute key="KILL_PREVIOUS_VIEWER" value="false" />
+  <stringAttribute key="OUTPUT" value="bin/AS3HTTPClient.swc" />
+  <booleanAttribute key="PASS_CP" value="true" />
+  <booleanAttribute key="PASS_SWCS" value="true" />
+  <stringAttribute key="PROJECT_NAME" value="AS3HTTPClient" />
+  <booleanAttribute key="USE_PROJECT_COMPILER_ARGUMENTS" value="true" />
+  <stringAttribute key="bad_container_name" value="/TestL" />
+  <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+    <listEntry value="/AS3HTTPClient" />
+  </listAttribute>
+  <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+    <listEntry value="4" />
+  </listAttribute>
+</launchConfiguration>
+

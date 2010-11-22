@@ -1,7 +1,7 @@
-package org.httpclient {
+package org.httpclient
+{
+	import flash.utils.getQualifiedClassName;
   
-  import flash.utils.getQualifiedClassName;
-  import flash.utils.describeType;
   
   /**
    * Log class.

@@ -76,13 +76,13 @@ package org.httpclient.events
 		{
 			if (listeners)
 			{
-				if (listeners["onClose"] != undefined) _onClose = listeners.onClose;
-				if (listeners["onComplete"] != undefined) _onComplete = listeners.onComplete;
-				if (listeners["onConnect"] != undefined) _onConnect = listeners.onConnect;
-				if (listeners["onData"] != undefined) _onData = listeners.onData;
-				if (listeners["onError"] != undefined) _onError = listeners.onError;
-				if (listeners["onStatus"] != undefined) _onStatus = listeners.onStatus;
-				if (listeners["onRequest"] != undefined) _onRequest = listeners.onRequest;
+				if (listeners["onClose"] != undefined) _onClose = listeners['onClose'];
+				if (listeners["onComplete"] != undefined) _onComplete = listeners['onComplete'];
+				if (listeners["onConnect"] != undefined) _onConnect = listeners['onConnect'];
+				if (listeners["onData"] != undefined) _onData = listeners['onData'];
+				if (listeners["onError"] != undefined) _onError = listeners['onError'];
+				if (listeners["onStatus"] != undefined) _onStatus = listeners['onStatus'];
+				if (listeners["onRequest"] != undefined) _onRequest = listeners['onRequest'];
 			}
 		}
 

@@ -1,7 +1,7 @@
-package org.httpclient.events {
+package org.httpclient.events
+{
+	import flash.utils.ByteArray;
     
-  import org.httpclient.Log;
-  import flash.utils.ByteArray;
   
   
   /**
@@ -21,7 +21,7 @@ package org.httpclient.events {
       */
     public function HTTPDataListener(listeners:Object = null) {
       super(listeners);  
-      if (listeners && listeners["onDataComplete"] != undefined) onDataComplete = listeners.onDataComplete;
+      if (listeners && listeners["onDataComplete"] != undefined) onDataComplete = listeners['onDataComplete'];
       _data = new ByteArray();
     }
     

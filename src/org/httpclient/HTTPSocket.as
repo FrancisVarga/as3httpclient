@@ -175,7 +175,7 @@ package org.httpclient {
           _socket.addEventListener(ProgressEvent.SOCKET_DATA, onSocketData);
           sendRequest(uri, request);
         } else {
-          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "CONNECT method failed", 1));
+          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "CONNECT method failed"));
         }
       };
     
@@ -257,7 +257,7 @@ package org.httpclient {
           
         } catch(e:EOFError) {
           Log.debug("EOF");
-          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "EOF", 1));          
+          _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.ERROR, false, false, "EOF"));          
           break;
         }                           
       }
@@ -293,7 +293,7 @@ package org.httpclient {
     }
     
     private function onTimeout(idleTime:Number):void {
-      _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.TIMEOUT_ERROR, false, false, "Timeout", 0));
+      _dispatcher.dispatchEvent(new HTTPErrorEvent(HTTPErrorEvent.TIMEOUT_ERROR, false, false, "Timeout"));
       close();
     }
     

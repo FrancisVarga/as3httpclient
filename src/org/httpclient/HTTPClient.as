@@ -14,24 +14,7 @@ package org.httpclient
 	import org.httpclient.http.Put;
 
 	import flash.errors.IllegalOperationError;
-	import flash.events.EventDispatcher;
-  
-  
-  //import org.httpclient.http.multipart.Multipart;
-  //import org.httpclient.http.multipart.FilePart;
-    
-  [Event(name=Event.CLOSE, type="flash.events.Event")]  
-  
-  [Event(name="requestConnect", type="org.httpclient.events.HTTPRequestEvent")]
-  [Event(name="responseComplete", type="org.httpclient.events.HTTPResponseEvent")]
-  
-  [Event(name="httpData", type="org.httpclient.events.HTTPDataEvent")]     
-  [Event(name="httpStatus", type="org.httpclient.events.HTTPStatusEvent")]
-  [Event(name="requestComplete", type="org.httpclient.events.HTTPRequestEvent")]  
-  [Event(name="httpError", type="org.httpclient.events.HTTPErrorEvent")]  
-  [Event(name="httpTimeoutError", type="org.httpclient.events.HTTPErrorEvent")]    
-  [Event(name="", type="flash.events.IOErrorEvent")]  
-  [Event(name="securityError", type="flash.events.SecurityErrorEvent")]  
+	import flash.events.EventDispatcher;  
   
   /**
    * HTTP Client.

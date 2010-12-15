@@ -2,16 +2,17 @@
  * Copyright (c) 2007 Gabriel Handford
  * See LICENSE.txt for full license information.
  */
-package org.httpclient {
+package org.httpclient
+{
+	import com.adobe.net.URI;
+	import com.adobe.net.URIEncodingBitmap;
+	import com.hurlant.util.Base64;
+
+	import org.httpclient.http.multipart.Multipart;
+
+	import flash.errors.IllegalOperationError;
+	import flash.utils.ByteArray;
   
-  import com.adobe.net.URI;
-  import com.adobe.net.URIEncodingBitmap;
-  import com.hurlant.util.Base64;
-  
-  import flash.errors.IllegalOperationError;
-  import flash.utils.ByteArray;
-  
-  import org.httpclient.http.multipart.Multipart;
 
   public class HTTPRequest {
     

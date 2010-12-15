@@ -4,6 +4,7 @@
  */
 package org.httpclient
 {
+	import flash.utils.ByteArray;
 	import com.adobe.net.URI;
 
 	import org.httpclient.events.HTTPListener;
@@ -185,7 +186,7 @@ package org.httpclient
      *  - bytesAvailable
      *  - close
      */
-    public function post(uri:URI, body:*, contentType:String = null):void {
+    public function post(uri:URI, body:ByteArray, contentType:String = null):void {
       var post:Post = new Post();
       post.body = body;
       post.contentType = contentType;
@@ -205,7 +206,7 @@ package org.httpclient
      *  - bytesAvailable
      *  - close
      */ 
-    public function put(uri:URI, body:*, contentType:String = null):void {
+    public function put(uri:URI, body:ByteArray, contentType:String = null):void {
       var put:Put = new Put();
       put.body = body;
       put.contentType = contentType;

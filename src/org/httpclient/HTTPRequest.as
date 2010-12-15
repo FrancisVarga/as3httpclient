@@ -101,7 +101,7 @@ package org.httpclient
      */
     public function set body(body:*):void {
       _body = body;
-      _header.replace("Content-Length", _body.length);
+			_header.replace("Content-Length", _body.length);
     }
     
     /**

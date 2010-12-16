@@ -186,7 +186,7 @@ package org.httpclient
      *  - bytesAvailable
      *  - close
      */
-    public function post(uri:URI, body:ByteArray, contentType:String = null):void {
+    public function post(uri:URI, body:ByteArray, contentType:String = "application/json"):void {
       var post:Post = new Post();
       post.body = body;
       post.contentType = contentType;

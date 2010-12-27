@@ -20,7 +20,8 @@ package org.httpclient
   /**
    * HTTP Client.
    */
-  public class HTTPClient extends EventDispatcher {
+	public class HTTPClient extends EventDispatcher
+	{
 
     private var _socket:HTTPSocket;  
     private var _listener:*;
